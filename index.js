@@ -17,8 +17,6 @@ if (process.env.REPL_ID) {
   });
 }
 
-console.log(client)
-
 client.build();
 
 module.exports = client; //;-;
