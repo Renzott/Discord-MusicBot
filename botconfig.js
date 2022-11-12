@@ -1,8 +1,8 @@
 module.exports = {
   Admins: ["314941037548404748"], // Admins of the bot, I don't know what this do. -Darren.
   Birthday: {
-    ServerID: "438178442077405184",
-    ChannelID: "1040391930397335643",
+    ServerID: "741109166785167511",
+    ChannelID: "884479927959822356",
   },
   ExpressServer: true, // If you wanted to make the website run or not
   DefaultPrefix: process.env.Prefix || ">", // Default prefix, Server Admins can change the prefix

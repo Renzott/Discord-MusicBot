@@ -1,6 +1,10 @@
 const { Client, MessageEmbed } = require("discord.js");
 const { schedule, ScheduledTask } = require('node-cron');
+const path = require("path");
+const Logger = require("../../structures/Logger");
+
 const dataUsers = require("./data.json")
+const logger = new Logger(path.join(__dirname, "..", "Logs.log"));
 
 /**
  * 
@@ -26,6 +30,8 @@ async function main(client) {
 function createCron(currentUser, client) {
     return schedule(currentUser.cronString, async () => {
 
+        logger.log(`Worker, ${currentUser.id} birthday event`)
+
         let { defaultMessage = [], defaultImages = [] } = dataUsers;
         let [indexMessage = 0, indexImage = 0] = [randomIndex(defaultMessage), randomIndex(defaultImages)]
 
@@ -47,7 +53,10 @@ function createCron(currentUser, client) {
         embed.setImage(currentUser?.image || defaultValues.defaultImage)
         embed.setColor(0xf9f900)
 
-        channel.send({ embed })
+        channel
+            .send({ embed })
+            .catch(() => logger.log(`Error on Worker ${currentUser.id}`))
+
     }, { timezone: 'America/Buenos_Aires' })
 }
 
