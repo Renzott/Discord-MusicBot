@@ -6,6 +6,7 @@ services:
     image: discord-musicbot:latest
     container_name: discord-musicbot
     restart: unless-stopped
+    tty: true
     ports:
       - "9535:3000"
     networks:
@@ -20,6 +21,7 @@ services:
     container_name: music-lavalink
     hostname: lavalink
     restart: unless-stopped
+    tty: true
     networks:
       - lavalink-net
     volumes:
